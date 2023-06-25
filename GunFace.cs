@@ -13,7 +13,8 @@ public class GunFace : MonoBehaviour
     }
 
    // private PlayerMain playerMain;
-    //public string Weapon = "Stake";
+    public string Weapon = "Stake";
+    
    
     Animator anim;
     public float angleoffset = 45f;
@@ -105,10 +106,9 @@ public class GunFace : MonoBehaviour
         bulletnum = Mathf.RoundToInt(UnityEngine.Random.Range(1, 6));
 
   
-     if(pistolcool <= 0f)
+     if(pistolcool <= 0f && Weapon == "Pistol")
         {
-            if (bulletnum == 1)
-            {
+            
 
                 Projectile temp = GameObject.Instantiate(projPrefab, new Vector3(this.transform.position.x + d.x, this.transform.position.y + d.y), this.transform.rotation);
 
@@ -118,16 +118,16 @@ public class GunFace : MonoBehaviour
 
                 temp.setDirection(d);
                 pistolcool = 1f;
-                anim.SetBool("Rollin", false);
-                anim.SetInteger("Rollno", bulletnum);
+                //anim.SetBool("Rollin", false);
+                //anim.SetInteger("Rollno", bulletnum);
                 string debug = anim.GetInteger("Rollno").ToString();
                 Debug.Log(bulletnum + " " + debug);
 
             }
-            else 
+            else if (Weapon == "Shotgun")
             {
               
-                for (int i = 0; i < bulletnum; i++)
+                for (int i = 0; i < 3; i++)
                 {
                    // Debug.Log("ran ");
                     Projectile temp = GameObject.Instantiate(projPrefab, new Vector3(this.transform.position.x + d.x, this.transform.position.y + d.y), this.transform.rotation);
@@ -149,7 +149,7 @@ public class GunFace : MonoBehaviour
             }
         }
         
-        }
+        
        
       
                    
